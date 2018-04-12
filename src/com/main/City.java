@@ -5,17 +5,21 @@
  */
 package com.main;
 
+import java.util.Comparator;
+
 /**
  *
  * @author abdusamed
  */
-public class City {
-    private String name;
+public class City implements Comparable<City>{
+    private static int index = 0;
+	private String name;
     private int x;
     private int y;
     
     public City (String name, int x, int y){
-        this.name=name;
+        index ++; // Counter to increment one by each initialization
+    	this.name=name;
         this.x = x;
         this.y = y;
     }
@@ -43,6 +47,21 @@ public class City {
     public void setY(int y) {
         this.y = y;
     }
+
+
+
+	public static int getIndex() {
+		return index;
+	}
+
+	@Override
+	public int compareTo(City o) {
+		return (this.getIndex() - o.getIndex());
+	}
+	
+	
+
+	
     
     
     

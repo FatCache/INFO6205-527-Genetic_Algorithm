@@ -8,19 +8,28 @@ package com.main;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
  * @author abdusamed
  */
-public class Route {
+public class Route{
     private ArrayList<City> route = new ArrayList<>();
     double fittness = 0.0; // each route begins with 0 fitness 
     
-    public Route(){ // Route prefilled with cities?
-        for (int i = 0; i < CityManager.getCityManger().size(); i++) {
+    public Route(boolean initalize){ // Route prefilled with cities?
+    	if(initalize) {
+    		for (int i = 0; i < CityManager.getCityManger().size(); i++) {
             route.add(CityManager.getCityManger().get(i)); // Populate the route City objects
         }
+    	}
+    	else {
+    		for (int i = 0; i < CityManager.getCityManger().size(); i++) {
+    			route.add(null);
+    			
+    		}
+    	}
     }
     
     public double getDistance(){
@@ -47,7 +56,19 @@ public class Route {
         // Assuming route is filled with cities -> simple shuffle to create an individual
         Collections.shuffle(route);        
     }
+    
+    public void sortRoute() {
+    	Collections.sort(route); // Hope it works ... used Comparable
+    }
+    
+    
+    public int getSize() {
+    	return route.size();
+    }
 
+    
+    
+    // Setters & Getters
 	public double getFittness() {
 		return fittness;
 	}
@@ -55,7 +76,12 @@ public class Route {
 	public void setFittness(double fittness) {
 		this.fittness = fittness;
 	}
-    
+
+	public ArrayList<City> getRoute() {
+		return route;
+	}
+
+
     
     
 }
