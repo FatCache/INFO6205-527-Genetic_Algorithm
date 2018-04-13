@@ -20,9 +20,14 @@ public class Test_Run {
 		ciManager.addCity(city4);
 		ciManager.addCity(city5);
 		
-		Population p = new Population(5, 3);
+		Population p = new Population(15, 3);
 		
 		p.nextGen();
+		
+//		for(int i = 0; i<10;i++) {
+//			p.nextGen();
+//		}
+		
 //		Route route = new Route(true);
 //		System.out.println("Printing route now");
 //		route.show();

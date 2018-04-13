@@ -17,15 +17,16 @@ public class Population { // Composed of many routes
 	double mutatePercentage = 0.01;
 	Route[] routes;
 	Random rnd = new Random();
-	int tournamentSize; // Assume tournamentSize = 5;
-
+	int tournamentSize; 
+	
 	public Population(int size, int tournamentSize) { // Say we want to have 50 routes
 		this.tournamentSize = tournamentSize;
 		routes = new Route[size]; // Initialize the list of 50 size
 		for (int i = 0; i < routes.length; i++) {
 			Route route = new Route(true);
 			route.generateIndividualRoute();
-			route.getFittness();
+			//System.out.println(route.getFittness());
+			
 			routes[i] = route;
 		}
 	}
@@ -44,8 +45,11 @@ public class Population { // Composed of many routes
 
 		// Tournament Time!
 		for (Route route : tournamentList) {
-			if (route.getFittness() >= routeFittest.getFittness())
+			if(route.getFittness() == 0.0) routeFittest = route;
+			else {
+			if (route.getFittness() <= routeFittest.getFittness())
 				routeFittest = route; // We have a new fit!
+			}
 		}
 
 		return routeFittest;
@@ -99,7 +103,7 @@ public class Population { // Composed of many routes
 		// Steady - state
 		// Route is replaced in the population if child is more fit.
 		int leastFitRouteid = getLeastFitRouteId();
-		if (child.getFittness() >= routes[leastFitRouteid].getFittness()) {
+		if (child.getFittness() <= routes[leastFitRouteid].getFittness()) {
 			routes[leastFitRouteid] = child; // Replace it with more fit child
 			System.out.println("Child was fit. Population updated");
 		} else

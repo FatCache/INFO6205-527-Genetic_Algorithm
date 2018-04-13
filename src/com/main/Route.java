@@ -33,10 +33,10 @@ public class Route {
 	}
 
 	public double getDistance() {
-		System.out.println("Inside getDistance");
-		this.show();
+		
+		
 		double sum = 0.0;
-		System.out.println(route.get(0).getName());
+		
 		for (int i = 0; i < route.size(); i++) {
 			if (route.get(i) == null)
 				break;
@@ -58,7 +58,7 @@ public class Route {
 		// Assuming route is filled with cities -> simple shuffle to create an
 		// individual
 		Collections.shuffle(route);
-		this.fittness = 1 / getDistance();
+		this.fittness = getDistance(); // inverse could work
 	}
 
 	public void sortRoute() {
