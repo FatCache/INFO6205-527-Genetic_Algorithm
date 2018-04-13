@@ -26,5 +26,13 @@ public class CityManager {
     public static ArrayList<City> getCityManger() {
         return cityManger;
     }
-        
+    
+    public void show() {
+    	System.out.print("[");
+    	for(City city:cityManger) {
+    		System.out.print(city.getIndex()+ ",");
+    	}
+    	System.out.print("]");
+    	System.out.println("");
+    }
 }

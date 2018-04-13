@@ -12,13 +12,14 @@ import java.util.Comparator;
  * @author abdusamed
  */
 public class City implements Comparable<City>{
-    private static int index = 0;
+    private static int count = 0;
+    private int index;
 	private String name;
     private int x;
     private int y;
     
     public City (String name, int x, int y){
-        index ++; // Counter to increment one by each initialization
+        index = count++; // Counter to increment one by each initialization
     	this.name=name;
         this.x = x;
         this.y = y;
@@ -50,7 +51,7 @@ public class City implements Comparable<City>{
 
 
 
-	public static int getIndex() {
+	public int getIndex() {
 		return index;
 	}
 

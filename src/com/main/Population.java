@@ -25,6 +25,7 @@ public class Population { // Composed of many routes
 		for (int i = 0; i < routes.length; i++) {
 			Route route = new Route(true);
 			route.generateIndividualRoute();
+			route.getFittness();
 			routes[i] = route;
 		}
 	}
@@ -34,6 +35,7 @@ public class Population { // Composed of many routes
 	public Route getFittestRoute() {
 		// Tournament Selection
 		Route routeFittest = new Route(false); // Has fitness = 0.0 as an initializer
+
 		Random rnd = new Random();
 		Route[] tournamentList = new Route[tournamentSize];
 		for (int i = 0; i < tournamentSize; i++) { // Populate tournamentList with routes
@@ -42,7 +44,7 @@ public class Population { // Composed of many routes
 
 		// Tournament Time!
 		for (Route route : tournamentList) {
-			if (route.getFittness() >= routeFittest.getFitness())
+			if (route.getFittness() >= routeFittest.getFittness())
 				routeFittest = route; // We have a new fit!
 		}
 
@@ -51,7 +53,10 @@ public class Population { // Composed of many routes
 
 	public void nextGen() {
 		Route routeA = getFittestRoute(); // Parent 1
+		System.out.println("Route A and Route B");
+		routeA.show();
 		Route routeB = getFittestRoute(); // Parent 2
+		routeB.show();
 		int start, end = 0;
 		Route child = new Route(false); // Need nulled filled array
 
@@ -94,7 +99,7 @@ public class Population { // Composed of many routes
 		// Steady - state
 		// Route is replaced in the population if child is more fit.
 		int leastFitRouteid = getLeastFitRouteId();
-		if (child.getFitness() >= routes[leastFitRouteid].getFittness()) {
+		if (child.getFittness() >= routes[leastFitRouteid].getFittness()) {
 			routes[leastFitRouteid] = child; // Replace it with more fit child
 			System.out.println("Child was fit. Population updated");
 		} else
@@ -108,7 +113,7 @@ public class Population { // Composed of many routes
 		int id = -1;
 		for (Route route : routes) {
 			count++;
-			if (route.getFitness() < leastfitroute.getFitness()) {
+			if (route.getFittness()< leastfitroute.getFittness()) {
 				leastfitroute = route;
 				id = count;
 			}
