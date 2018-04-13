@@ -45,7 +45,7 @@ public class Population { // Composed of many routes
 
 		// Tournament Time!
 		for (Route route : tournamentList) {
-			if(route.getFittness() == 0.0) routeFittest = route;
+			if(routeFittest.getFittness() == 0.0) routeFittest = route;
 			else {
 			if (route.getFittness() <= routeFittest.getFittness())
 				routeFittest = route; // We have a new fit!
