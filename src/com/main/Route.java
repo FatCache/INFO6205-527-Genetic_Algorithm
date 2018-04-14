@@ -25,7 +25,7 @@ public class Route {
 				route.add(CityManager.getCityManger().get(i)); // Populate the route City objects
 			}
 		} else {
-			route = new ArrayList<>();
+			route = new ArrayList<>(CityManager.getCityManger().size());
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
 				route.add(null);
 			}
@@ -74,8 +74,8 @@ public class Route {
 		return fittness;
 	}
 
-	public void setFittness(double fittness) {
-		this.fittness = fittness;
+	public void setFittness() {
+		this.fittness = getDistance();
 	}
 
 	public ArrayList<City> getRoute() {
@@ -86,8 +86,9 @@ public class Route {
 		if (route.get(0) == null) {
 			System.out.println("No city to show");;
 		} else {
+
 			System.out.print("{");
-			for (City city : route) {
+			for (City city : this.route) {
 				System.out.print(city.getIndex() + ",");
 			}
 			System.out.print("}");

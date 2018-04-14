@@ -13,16 +13,22 @@ public class Test_Run {
 		City city3 = new City("SF", -100,0);
 		City city4 = new City("Seattle", 100,100);
 		City city5 = new City("Biejing", 500,250);
+		City city6 = new City("Tokyo", 530,-450);
 
 		ciManager.addCity(city1);
 		ciManager.addCity(city2);
 		ciManager.addCity(city3);
 		ciManager.addCity(city4);
 		ciManager.addCity(city5);
+		ciManager.addCity(city6);
 		
 		Population p = new Population(15, 3);
+		int testRuns = 25;
 		
-		p.nextGen();
+		for(int i = 0; i < testRuns;i++) {
+			p.nextGen();
+		}
+		
 		
 //		for(int i = 0; i<10;i++) {
 //			p.nextGen();
