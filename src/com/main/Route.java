@@ -88,11 +88,11 @@ public class Route {
 		} else {
 
 			System.out.print("{");
-			for (City city : this.route) {
+			for (City city : route) {
 				System.out.print(city.getIndex() + ",");
 			}
 			System.out.print("}");
-			System.out.println("");
+			//System.out.println("");
 
 		}
 	}

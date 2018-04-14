@@ -176,20 +176,24 @@ public class Population { // Composed of many routes
 
 	public void show() {
 		for (Route route : routes) {
+			
 			route.show();
+			System.out.print(route.getFittness());
+			System.out.println("");
 		}
 	}
 
-	public Route getMostFitRoute() { // Useless ... should return the best!
+	public void getMostFitRoute() { // Useless ... should return the best!
 		Route mostFitRoute = routes[0]; // Initializing the routes
 		for (Route route : routes) {
-			
+			System.out.println(route.getFittness());
+			System.out.println(mostFitRoute.getFittness());
 			if (route.getFittness() < mostFitRoute.getFittness()) {
-				mostFitRoute = route;	
+				mostFitRoute = route;
 			}
 		}
+		System.out.print("Most Fit Route -> ");
 		mostFitRoute.show();
-		return mostFitRoute;
 	}
 	
 
