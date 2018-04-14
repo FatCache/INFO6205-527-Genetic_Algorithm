@@ -14,7 +14,7 @@ import java.util.Comparator;
  *
  * @author abdusamed
  */
-public class Route {
+public class Route implements Cloneable {
 	private ArrayList<City> route;
 	double fittness = 0.0; // each route begins with 0 fitness
 
@@ -29,14 +29,14 @@ public class Route {
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
 				route.add(null);
 			}
+			this.fittness = getDistance();
 		}
 	}
 
 	public double getDistance() {
-		
-		
+
 		double sum = 0.0;
-		
+
 		for (int i = 0; i < route.size(); i++) {
 			if (route.get(i) == null)
 				break;
@@ -62,7 +62,7 @@ public class Route {
 	}
 
 	public void sortRoute() {
-		Collections.sort(route); // Hope it works ... used Comparable
+		Collections.sort(this.route); // Hope it works ... used Comparable
 	}
 
 	public int getSize() {
@@ -84,17 +84,21 @@ public class Route {
 
 	public void show() {
 		if (route.get(0) == null) {
-			System.out.println("No city to show");;
+			System.out.println("No city to show");
+			;
 		} else {
-
 			System.out.print("{");
 			for (City city : route) {
 				System.out.print(city.getIndex() + ",");
 			}
 			System.out.print("}");
-			//System.out.println("");
-
+			// System.out.println("");
 		}
+	}
+	
+	@Override
+	public Route clone() throws CloneNotSupportedException {
+		return (Route) super.clone();
 	}
 
 }
