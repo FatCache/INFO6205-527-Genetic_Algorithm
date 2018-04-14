@@ -62,7 +62,7 @@ public class Route implements Cloneable {
 	}
 
 	public void sortRoute() {
-		Collections.sort(this.route); // Hope it works ... used Comparable
+		Collections.sort(route); // Hope it works ... used Comparable
 	}
 
 	public int getSize() {
@@ -95,6 +95,11 @@ public class Route implements Cloneable {
 			// System.out.println("");
 		}
 	}
+	
+	public void sortRoute(Route routeSent) { // Hack
+		Collections.sort(routeSent.getRoute()); 
+	}
+
 	
 	@Override
 	public Route clone() throws CloneNotSupportedException {

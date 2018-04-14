@@ -54,17 +54,21 @@ public class Population { // Composed of many routes
 					routeFittest = route; // We have a new fit!
 			}
 		}
-		//System.out.println("Most Fit -> " + routeFittest.getFittness());
-		//routeFittest.show();
+		
 		return routeFittest;
+		
 	}
 
 	public void nextGen() throws CloneNotSupportedException {
+		show();
 		refreshFitness();
-		Route routeA = getFittestRouteTournament().clone(); // Parent 1
 		
+		Route routeA = getFittestRouteTournament().clone(); // Parent 1
+		System.out.print("Parent A Before Sort - ");
+		routeA.show(); System.out.print(""+routeA.getFittness());
+		System.out.println("");
 		Route routeB = getFittestRouteTournament().clone(); // Parent 2
-		routeA.sortRoute();
+		routeA.sortRoute(routeA);
 		routeA.setFittness();
 		System.out.print("Parent A - ");
 		routeA.show(); System.out.print(""+routeA.getFittness());
@@ -153,7 +157,7 @@ public class Population { // Composed of many routes
 			routes[leastFitRouteid] = child;
 			//System.out.println("Child was more fit. Population updated");
 		}else {
-			//System.out.println("Nope");
+			System.out.println("Nope");
 		}
 		// System.out.println("After replacement");
 		// show();

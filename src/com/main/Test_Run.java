@@ -54,7 +54,7 @@ public class Test_Run {
 		
 		
 		Population p = new Population(25, 4);
-		int testRuns = 50;
+		int testRuns = 5;
 		
 		for(int i = 0; i < testRuns;i++) {
 			System.out.println("****Test Run**** --> " + i);
