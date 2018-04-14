@@ -16,6 +16,7 @@ import java.util.Random;
 public class Population { // Composed of many routes
 	double mutatePercentage = 0.01;
 	Route[] routes;
+	Route mostFitRoute;
 	Random rnd = new Random();
 	int tournamentSize;
 
@@ -26,9 +27,9 @@ public class Population { // Composed of many routes
 			Route route = new Route(true);
 			route.generateIndividualRoute();
 			// System.out.println(route.getFittness());
-
 			routes[i] = route;
 		}
+		//mostFitRoute = routes[0];
 	}
 
 	// Get most fit, a better way could be to use priority queue i.e most fit at the
@@ -116,23 +117,29 @@ public class Population { // Composed of many routes
 
 		// System.out.println("ID -> " + leastFitRouteid);
 
-		// System.out.print("Child - -> ");
-		// child.show();
-		// child.setFittness();
-		// System.out.println("Fitness -> " + child.getFittness());
-
+		
+		child.setFittness();
+		routes[leastFitRouteid].setFittness();
+		
+//		System.out.println("");
+//		System.out.print("Child - -> ");
+//		child.show();
+//		System.out.println("Child Fitness -> " + child.getFittness());
+		
+//		System.out.println("Least Fit Fitness -> " + routes[leastFitRouteid].getFittness());
+//		System.out.print("Least - -> ");
+//		routes[leastFitRouteid].show();
+		
 		if (child.getFittness() <= routes[leastFitRouteid].getFittness()) {
 			routes[leastFitRouteid] = child;
-			System.out.println(child.getFittness());
-			System.out.println(routes[leastFitRouteid].getFittness());
-			
-			//System.out.println("Child was fit. Population updated");
-		} 
-//		else {
-//			System.out.println("Child was not fit. Population not updated");
-//		}
+			// System.out.println("Child was fit. Population updated");
+		}
 		
 		
+		// else {
+		// System.out.println("Child was not fit. Population not updated");
+		// }
+
 	}
 
 	public int getLeastFitRouteId() {
@@ -147,8 +154,8 @@ public class Population { // Composed of many routes
 			}
 
 		}
-		System.out.println("Least fit in pop -> " + leastfitroute.getFittness());
-		System.out.println(id);
+		// System.out.println("Least fit in pop -> " + leastfitroute.getFittness());
+		// System.out.println(id);
 		return id;
 	}
 
@@ -159,18 +166,32 @@ public class Population { // Composed of many routes
 				// if (child.getRoute().get(i).getIndex() == cityTest.getIndex()) // Compare the
 				// two dex [Better code below]
 				if (child.getRoute().get(i).compareTo(cityTest) == 0) // Should return 0 if identical i.e both their
-																		// index are equivalent
+					// index are equivalent
 					return true; // City already exist in the array
 			}
 		}
 		return false;
 
 	}
-	
+
 	public void show() {
-		for(Route route:routes) {
+		for (Route route : routes) {
 			route.show();
 		}
 	}
 
+	public Route getMostFitRoute() { // Useless ... should return the best!
+		Route mostFitRoute = routes[0]; // Initializing the routes
+		for (Route route : routes) {
+			
+			if (route.getFittness() < mostFitRoute.getFittness()) {
+				mostFitRoute = route;	
+			}
+		}
+		mostFitRoute.show();
+		return mostFitRoute;
+	}
+	
+
+	
 }
