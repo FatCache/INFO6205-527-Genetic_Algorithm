@@ -51,8 +51,8 @@ public class Test_Run {
 		
 		
 		
-		Population p = new Population(50, 5,0.40);
-		int testRuns = 500;
+		Population p = new Population(50, 5,0.015);
+		int testRuns = 50;
 		
 		for(int i = 0; i < testRuns;i++) {
 			System.out.println("****Test Run**** --> " + i);

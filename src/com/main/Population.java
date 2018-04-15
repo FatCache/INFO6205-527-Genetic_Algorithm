@@ -47,7 +47,7 @@ public class Population { // Composed of many routes
 
 		// Tournament Time!
 		for (Route route : tournamentList) {
-			//System.out.println(route.getFittness());
+
 			if (routeFittest.getFittness() == 0.0)
 				routeFittest = route;
 			else {
@@ -70,7 +70,7 @@ public class Population { // Composed of many routes
 		for(int i = 0; i < routeA.getSize();i++) {
 			routeA.getRoute().set(i, dummuyRouteA.getRoute().get(i));
 		}
-//		routeA = getFittestRouteTournament().clone();
+
 		System.out.print("Parent A Before Sort - ");
 		routeA.show(); System.out.print(""+routeA.getFittness());
 		System.out.println("");
@@ -81,7 +81,7 @@ public class Population { // Composed of many routes
 		}
 		
 		routeB.setFittness();
-//		routeB = getFittestRouteTournament().clone(); // Parent 2
+
 		routeA.sortRoute(routeA);
 		routeA.setFittness();
 		System.out.print("Parent A - ");
@@ -93,15 +93,6 @@ public class Population { // Composed of many routes
 		int start, end = 0;
 		Route child = new Route(false); // Need nulled filled arrsay
 
-		// Crossover Process 1) Sort 2) Pick remaining values
-		// Sort
-//		System.out.println("Route A Before:");
-//		routeA.show();
-//		
-//		System.out.println("Route A After:");
-		
-//		routeA.show();
-//		System.out.println("");
 
 		while (true) { // Start should be less than end
 			start = rnd.nextInt(routeA.getSize());
@@ -138,23 +129,18 @@ public class Population { // Composed of many routes
 		// fit route in pop
 		child = mutate(child, start, end);
 		int leastFitRouteid = getLeastFitRouteId();
-		// show();
-		// System.out.println("Location Index -> " + leastFitRouteid);
+
 
 		child.setFittness();
 
-		// System.out.println("");
-//		System.out.print("Child must not be perfect! - -> ");
+
 		System.out.print("Child Gen     -> ");
 		child.show();
 		System.out.print(":" + child.getFittness());
 		System.out.println("");
 		getMostFitRoute();
 
-		// System.out.println("Least Fit Fitness -> " +
-		// routes[leastFitRouteid].getFittness());
-		// System.out.print("Least - -> ");
-		// routes[leastFitRouteid].show();
+
 
 		if (child.getFittness() < routes[leastFitRouteid].getFittness()) {
 			routes[leastFitRouteid] = child;
@@ -162,13 +148,7 @@ public class Population { // Composed of many routes
 		}else {
 			System.out.println("Nope");
 		}
-		// System.out.println("After replacement");
-		// show();
 
-//		System.out.println("End of Gen");
-		// else {
-		// System.out.println("Child was not fit. Population not updated");
-		// }
 
 
 	}
@@ -179,8 +159,7 @@ public class Population { // Composed of many routes
 			child.show();
 			child.setFittness();
 			System.out.print(":"+child.getFittness());
-//			start = rnd.nextInt(child.getSize());
-//			end = rnd.nextInt(child.getSize());
+
 			Collections.swap(child.getRoute(), start, end);
 			System.out.println("Mutate Occured");
 			child.show();
@@ -200,8 +179,7 @@ public class Population { // Composed of many routes
 				id = count;
 			}
 		}
-		// System.out.println("Least fit in pop -> " + leastfitroute.getFittness());
-		// System.out.println(id);
+
 		return id;
 	}
 
@@ -209,8 +187,7 @@ public class Population { // Composed of many routes
 		City cityTest = routeB.getRoute().get(x);
 		for (int i = 0; i < routeB.getSize(); i++) {
 			if (child.getRoute().get(i) != null) { // If child id not empty means city exists at index
-				// if (child.getRoute().get(i).getIndex() == cityTest.getIndex()) // Compare the
-				// two dex [Better code below]
+
 				if (child.getRoute().get(i).compareTo(cityTest) == 0) // Should return 0 if identical i.e both their
 					// index are equivalent
 					return true; // City already exist in the array
@@ -232,7 +209,7 @@ public class Population { // Composed of many routes
 	public void getMostFitRoute() throws CloneNotSupportedException { // Useless ... should return the best!
 		Route mostFitRoute = routes[0].clone(); // Initializing the routes
 		for (Route route : routes) {
-//			System.out.println("Compare route with most" + route.getFittness() + ":" + mostFitRoute.getFittness());
+
 
 			if (route.getFittness() < mostFitRoute.getFittness()) {
 				mostFitRoute = route.clone();
