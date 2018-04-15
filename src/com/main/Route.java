@@ -29,7 +29,7 @@ public class Route implements Cloneable {
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
 				route.add(null);
 			}
-			this.fittness = getDistance();
+//			this.fittness = getDistance();
 		}
 	}
 

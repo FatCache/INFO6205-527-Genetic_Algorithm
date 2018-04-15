@@ -14,19 +14,20 @@ import java.util.Random;
  * @author abdusamed
  */
 public class Population { // Composed of many routes
-	double mutatePercentage = 0.40;
+	double mutatePercentage;
 	Route[] routes;
 	Route mostFitRoute;
 	Random rnd = new Random();
 	int tournamentSize;
 
-	public Population(int size, int tournamentSize) { // Say we want to have 50 routes
+	public Population(int size, int tournamentSize, double mP) { // Say we want to have 50 routes
 		this.tournamentSize = tournamentSize;
+		this.mutatePercentage = mP;
 		routes = new Route[size]; // Initialize the list of 50 size
 		for (int i = 0; i < routes.length; i++) {
 			Route route = new Route(true);
 			route.generateIndividualRoute();
-
+			
 			routes[i] = route;
 		}
 
@@ -63,11 +64,24 @@ public class Population { // Composed of many routes
 		show();
 		refreshFitness();
 		
-		Route routeA = getFittestRouteTournament().clone(); // Parent 1
+		
+		Route routeA = new Route(false); // Parent 1
+		Route dummuyRouteA = getFittestRouteTournament();
+		for(int i = 0; i < routeA.getSize();i++) {
+			routeA.getRoute().set(i, dummuyRouteA.getRoute().get(i));
+		}
+//		routeA = getFittestRouteTournament().clone();
 		System.out.print("Parent A Before Sort - ");
 		routeA.show(); System.out.print(""+routeA.getFittness());
 		System.out.println("");
-		Route routeB = getFittestRouteTournament().clone(); // Parent 2
+		Route dummuyRouteB = getFittestRouteTournament();
+		Route routeB = new Route(false);//Parent 2
+		for(int i = 0; i < routeB.getSize();i++) {
+			routeB.getRoute().set(i, dummuyRouteB.getRoute().get(i));
+		}
+		
+		routeB.setFittness();
+//		routeB = getFittestRouteTournament().clone(); // Parent 2
 		routeA.sortRoute(routeA);
 		routeA.setFittness();
 		System.out.print("Parent A - ");
@@ -116,24 +130,13 @@ public class Population { // Composed of many routes
 		}
 
 		// New Child Populated with cross over. Time to mutate
-		double toMutateorNotTo = rnd.nextFloat();
-		if (toMutateorNotTo < mutatePercentage) {
-			child.show();
-			child.setFittness();
-			System.out.print(":"+child.getFittness());
-			start = rnd.nextInt(child.getSize());
-			end = rnd.nextInt(child.getSize());
-			Collections.swap(child.getRoute(), start, end);
-			System.out.println("Mutate Occured");
-			child.show();
-			System.out.println("");
-		}
+
 		// Child generation completed
 		// Steady - state
 
 		// Child is put back into the population IF and ONLY IF it's more fit from least
 		// fit route in pop
-
+		child = mutate(child, start, end);
 		int leastFitRouteid = getLeastFitRouteId();
 		// show();
 		// System.out.println("Location Index -> " + leastFitRouteid);
@@ -168,6 +171,22 @@ public class Population { // Composed of many routes
 		// }
 
 
+	}
+	
+	public Route mutate(Route child, int start, int end) {
+		double toMutateorNotTo = rnd.nextFloat();
+		if (toMutateorNotTo < mutatePercentage) {
+			child.show();
+			child.setFittness();
+			System.out.print(":"+child.getFittness());
+//			start = rnd.nextInt(child.getSize());
+//			end = rnd.nextInt(child.getSize());
+			Collections.swap(child.getRoute(), start, end);
+			System.out.println("Mutate Occured");
+			child.show();
+			System.out.println("");
+		}
+		return child;
 	}
 
 	public int getLeastFitRouteId() throws CloneNotSupportedException {

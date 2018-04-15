@@ -1,7 +1,5 @@
 package com.main;
 
-import java.util.Collections;
-
 public class Test_Run {
 	public static void main(String[] args) throws CloneNotSupportedException {
 		
@@ -17,17 +15,17 @@ public class Test_Run {
 		City city8 = new City("City H", 40,120);
 		City city9 = new City("City I", 40,120);
 		City city10 = new City("City J", 100,120);
-//		City city11 = new City("City K", 180,100);
-//		City city12 = new City("City L", 60,80);
-//		City city13 = new City("City M", 120,80);
-//		City city14 = new City("City N", 180,60);
-//		City city15 = new City("City O", 20, 80);
-//		City city16 = new City("City P", 100,40);
-//		City city17 = new City("City Q", 200,40);
-//		City city18 = new City("City R", 20,20);
-//		City city19 = new City("City S", 60,20);
-//		City city20 = new City("City T", 160,20);
-//		
+		City city11 = new City("City K", 180,100);
+		City city12 = new City("City L", 60,80);
+		City city13 = new City("City M", 120,80);
+		City city14 = new City("City N", 180,60);
+		City city15 = new City("City O", 20, 80);
+		City city16 = new City("City P", 100,40);
+		City city17 = new City("City Q", 200,40);
+		City city18 = new City("City R", 20,20);
+		City city19 = new City("City S", 60,20);
+		City city20 = new City("City T", 160,20);
+		
 
 		ciManager.addCity(city1);
 		ciManager.addCity(city2);
@@ -39,22 +37,22 @@ public class Test_Run {
 		ciManager.addCity(city8);
 		ciManager.addCity(city9);
 		ciManager.addCity(city10);
-//		ciManager.addCity(city11);
-//		ciManager.addCity(city12);
-//		ciManager.addCity(city13);
-//		ciManager.addCity(city14);
-//		ciManager.addCity(city15);
-//		ciManager.addCity(city16);
-//		ciManager.addCity(city17);
-//		ciManager.addCity(city18);
-//		ciManager.addCity(city19);
-//		ciManager.addCity(city20);
+		ciManager.addCity(city11);
+		ciManager.addCity(city12);
+		ciManager.addCity(city13);
+		ciManager.addCity(city14);
+		ciManager.addCity(city15);
+		ciManager.addCity(city16);
+		ciManager.addCity(city17);
+		ciManager.addCity(city18);
+		ciManager.addCity(city19);
+		ciManager.addCity(city20);
 		
 		
 		
 		
-		Population p = new Population(25, 4);
-		int testRuns = 5;
+		Population p = new Population(50, 5,0.40);
+		int testRuns = 500;
 		
 		for(int i = 0; i < testRuns;i++) {
 			System.out.println("****Test Run**** --> " + i);
