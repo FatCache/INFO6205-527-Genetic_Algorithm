@@ -10,6 +10,7 @@ import java.util.Comparator;
 /**
  *
  * @author abdusamed
+ * 
  */
 public class City implements Comparable<City> {
 	private static int count = 0;
@@ -19,7 +20,7 @@ public class City implements Comparable<City> {
 	private int y;
 
 	public City(String name, int x, int y) {
-		index = count++; // Counter to increment one by each initialization
+		index = count++; // Counter to increment for each initialization of City
 		this.name = name;
 		this.x = x;
 		this.y = y;

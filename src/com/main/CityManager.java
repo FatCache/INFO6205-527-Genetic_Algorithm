@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author abdusamed
  */
 public class CityManager {
-    // Holds all the cities
+	// Holds all the genotype [cities] to describe a chromosome 
     private static ArrayList<City> cityManger = new ArrayList<>();
     
     public CityManager(){

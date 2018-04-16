@@ -14,11 +14,11 @@ import java.util.Comparator;
  *
  * @author abdusamed
  */
-public class Route implements Cloneable {
+public class Route {
 	private ArrayList<City> route;
 	double fittness = 0.0; // each route begins with 0 fitness
 
-	public Route(boolean initalize) { // Route prefilled with cities?
+	public Route(boolean initalize) {
 		if (initalize) {
 			route = new ArrayList<>();
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
@@ -29,10 +29,13 @@ public class Route implements Cloneable {
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
 				route.add(null);
 			}
-//			this.fittness = getDistance();
 		}
 	}
-
+	
+	/**
+	 * Calculate the entire distance if TS goes to each city and return it which is it's fitness value
+	 * @return
+	 */
 	public double getDistance() {
 
 		double sum = 0.0;
@@ -53,16 +56,15 @@ public class Route implements Cloneable {
 		}
 		return sum;
 	}
+	
 
 	public void generateIndividualRoute() {
-		// Assuming route is filled with cities -> simple shuffle to create an
-		// individual
 		Collections.shuffle(route);
-		this.fittness = getDistance(); // inverse could work
+		this.fittness = getDistance();
 	}
 
 	public void sortRoute() {
-		Collections.sort(route); // Hope it works ... used Comparable
+		Collections.sort(route);
 	}
 
 	public int getSize() {
@@ -96,14 +98,4 @@ public class Route implements Cloneable {
 		}
 	}
 	
-	public void sortRoute(Route routeSent) { // Hack
-		Collections.sort(routeSent.getRoute()); 
-	}
-
-	
-	@Override
-	public Route clone() throws CloneNotSupportedException {
-		return (Route) super.clone();
-	}
-
 }

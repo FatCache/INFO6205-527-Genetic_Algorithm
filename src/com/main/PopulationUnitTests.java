@@ -1,5 +1,6 @@
 package com.main;
 
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,7 +11,12 @@ import java.util.zip.Adler32;
 
 import org.junit.jupiter.api.Test;
 
-public class assignment5Test {
+/**
+*
+* @author yanfei
+*/
+
+public class PopulationUnitTests {
 
 	public void setUp() {
 	CityManager ciManager = new CityManager();
