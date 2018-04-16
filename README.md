@@ -1,3 +1,12 @@
-#Applying Genetic Algorithm to the Traveling Salesman Problem
-The Travelling Salesman Problem (often called TSP) is a classic algorithmic problem in the field of computer science and operations research[1]. It is focused on optimization. In this context better solution often means a solution that is cheaper. TSP is a mathematical problem. It is most easily expressed as a graph describing the locations of a set of nodes.
-Our goal in this problem is to find the shortest path to visit all cities(points) exactly once.
+
+## Applying Genetic Algorithm to the Traveling Salesman Problem
+
+The Travelling Salesman Problem (often called [TSP](https://en.wikipedia.org/wiki/Travelling_salesman_problem)) is a classic algorithmic problem in the field of computer science and operations research. It is focused on optimization. There are numerous methodology developed over the decades to find the ideal solution in the shortest span of time & space. One of the techniques is to apply [Genetic Algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm) to the problem. 
+
+In this academic project, an algorithm is developed (written in Java), to carry out an experimental approach to find an *ideal* solution to a problem where our solution space spans across up to **2.432902e+18 (20!) possible elements**.
+
+
+*Developed By:*
+
+ - Abdusamed Ahmed 
+ - Yanfei Peng
