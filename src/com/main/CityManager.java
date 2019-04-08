@@ -13,11 +13,9 @@ import java.util.ArrayList;
  */
 public class CityManager {
 	// Holds all the genotype [cities] to describe a chromosome 
-    private static ArrayList<City> cityManger = new ArrayList<>();
+    private static final ArrayList<City> cityManger = new ArrayList<>();
     
-    public CityManager(){
-        
-    }
+    public CityManager() {}
     
     public void addCity(City city){
         cityManger.add(city);
@@ -29,9 +27,9 @@ public class CityManager {
     
     public void show() {
     	System.out.print("[");
-    	for(City city:cityManger) {
-    		System.out.print(city.getIndex()+ ",");
-    	}
+        cityManger.forEach((city) -> {
+            System.out.print(city.getIndex()+ ",");
+        });
     	System.out.print("]");
     	System.out.println("");
     }
