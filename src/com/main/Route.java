@@ -6,23 +6,24 @@
 package com.main;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
+
 
 /**
  *
  * @author abdusamed
  */
 public class Route {
-	private ArrayList<City> route;
+    private final ArrayList<City> route;
+    
 	double fittness = 0.0; // each route begins with 0 fitness
 
 	public Route(boolean initalize) {
 		if (initalize) {
 			route = new ArrayList<>();
 			for (int i = 0; i < CityManager.getCityManger().size(); i++) {
-				route.add(CityManager.getCityManger().get(i)); // Populate the route City objects
+                                // Populate the route City objects
+				route.add(CityManager.getCityManger().get(i)); 
 			}
 		} else {
 			route = new ArrayList<>(CityManager.getCityManger().size());
@@ -33,19 +34,18 @@ public class Route {
 	}
 	
 	/**
-	 * Calculate the entire distance if TS goes to each city and return it which is it's fitness value
+	 * Calculate the entire distance if traveling salesman goes to each 
+         * city and return. This is its fitness value on return
 	 * @return
 	 */
 	public double getDistance() {
 
 		double sum = 0.0;
 
-		for (int i = 0; i < route.size(); i++) {
+		for (int i = 0; i < route.size() - 1; i++) {
 			if (route.get(i) == null)
 				break;
-			if (i + 1 >= route.size()) { // Check if reached the last element in the array
-				break;
-			} else { // Elucidian distance between two cities
+			else { // Elucidian distance between two cities
 				int x1 = route.get(i).getX();
 				int x2 = route.get(i + 1).getX();
 				int y1 = route.get(i).getY();
@@ -71,7 +71,6 @@ public class Route {
 		return route.size();
 	}
 
-	// Setters & Getters
 	public double getFittness() {
 		return fittness;
 	}
@@ -87,14 +86,15 @@ public class Route {
 	public void show() {
 		if (route.get(0) == null) {
 			System.out.println("No city to show");
-			;
+	
 		} else {
+                    
 			System.out.print("{");
-			for (City city : route) {
-				System.out.print(city.getIndex() + ",");
-			}
+                        route.forEach((city) -> {
+                            System.out.print(city.getIndex() + ",");
+                    });
 			System.out.print("}");
-			// System.out.println("");
+
 		}
 	}
 	

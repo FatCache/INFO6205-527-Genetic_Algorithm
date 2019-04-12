@@ -8,11 +8,12 @@ package com.main;
 import java.util.ArrayList;
 
 /**
- *
+ * A chromosome [a travel route] composed of genotypes[cities]
  * @author abdusamed
  */
 public class CityManager {
-	// Holds all the genotype [cities] to describe a chromosome 
+
+    // A collection of genotypes
     private static final ArrayList<City> cityManger = new ArrayList<>();
     
     public CityManager() {}

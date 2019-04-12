@@ -5,15 +5,17 @@
  */
 package com.main;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.stream.IntStream;
 
-/**
- *
- * @author abdusamed
- */
-public class Population { // Composed of many routes
+// Collection of generated routes
+public class Population {
+        
 	double mutatePercentage;
 	Route[] routes;
 	Route mostFitRoute;
@@ -37,13 +39,17 @@ public class Population { // Composed of many routes
 	public Population(int size, int tournamentSize, double mP) {
 		this.tournamentSize = tournamentSize;
 		this.mutatePercentage = mP;
+                
+                List<CompletableFuture> futures = new ArrayList();
+                
 		routes = new Route[size]; // Initialize the list of 50 size
 		for (int i = 0; i < routes.length; i++) {
+                    
 			Route route = new Route(true);
 			route.generateIndividualRoute();
 
 			routes[i] = route;
-		}
+		}              
 
 	}
 
@@ -57,12 +63,12 @@ public class Population { // Composed of many routes
 		// Tournament Selection
 		Route routeFittest = new Route(false); // Create empty Object
 
-		Random rnd = new Random();
+		Random random = new Random();
 		Route[] tournamentList = new Route[tournamentSize];
 		// Populate tournamentList with routes
 		for (int i = 0; i < tournamentSize; i++) { 
 			// Randomly pick routes from the entire population
-			tournamentList[i] = routes[rnd.nextInt(routes.length)]; 
+			tournamentList[i] = routes[random.nextInt(routes.length)]; 
 		}
 
 		// Tournament Procedure
@@ -146,7 +152,7 @@ public class Population { // Composed of many routes
 		System.out.print(":" + child.getFittness());
 		System.out.println("");
 		
-		// Print Most Fit Route in the Population for illustration Reasons
+		// Print Most Fit Route in the Population for illustraive purposes
 		getMostFitRoute();
 		
 		// Compare Child with LEAST fit route in the population
@@ -154,7 +160,7 @@ public class Population { // Composed of many routes
 		if (child.getFittness() < routes[leastFitRouteid].getFittness()) {
 			routes[leastFitRouteid] = child; // Child replaces least fit route
 		} else {
-			System.out.println("Child was Not Fit Enough"); 
+			System.out.println("Child is Not Fit Enough"); 
 		}
 		 
 	}
@@ -175,7 +181,7 @@ public class Population { // Composed of many routes
 			System.out.print(":" + child.getFittness());
 
 			Collections.swap(child.getRoute(), start, end);
-			System.out.println("Mutate Occured");
+			System.out.println("Mutation Has Occured");
 			child.show();
 			System.out.println("");
 		}
@@ -183,7 +189,8 @@ public class Population { // Composed of many routes
 	}
 
 	public int getLeastFitRouteId() {
-		Route leastfitroute = routes[0]; // Initializing the routes
+                // Initializing the routes
+		Route leastfitroute = routes[0]; 
 		int count = -1;
 		int id = 0;
 		for (Route route : routes) {
@@ -193,14 +200,14 @@ public class Population { // Composed of many routes
 				id = count;
 			}
 		}
-
 		return id;
 	}
 
 	public boolean ifDuplicate(Route routeB, Route child, int x) {
 		City cityTest = routeB.getRoute().get(x);
 		for (int i = 0; i < routeB.getSize(); i++) {
-			if (child.getRoute().get(i) != null) { // If child index not empty means city exists at index
+                        // If child index not empty means city exists at index
+			if (child.getRoute().get(i) != null) { 
 				if (child.getRoute().get(i).compareTo(cityTest) == 0) // Returns 0 if identical
 					return true;}}
 		return false;
